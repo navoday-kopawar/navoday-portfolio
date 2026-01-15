@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Navoday Atul Kopawar — Portfolio</title>
+  <meta name="description" content="Navoday Kopawar — Computer Science Engineer. Web Developer. Portfolio showcasing React, Node.js, Java projects and UI work." />
+
+  <!-- Preload profile image for faster rendering -->
+  <link rel="preload" as="image" href="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png">
+  <!-- favicon -->
+  <link rel="icon" href="/favicon.ico" />
+
+  <!-- Ensure theme is applied ASAP to avoid flash: default to device preference if no stored preference -->
+  <script>
+    (function() {
+      try {
+        const stored = localStorage.getItem('color-theme');
+        if (stored === 'dark') {
+          document.documentElement.classList.add('dark');
+        } else if (stored === 'light') {
+          document.documentElement.classList.remove('dark');
+        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.documentElement.classList.add('dark');
+        }
+        // otherwise leave as light by default
+      } catch (e) {
+        // ignore errors (e.g., localStorage disabled)
+      }
+    })();
+  </script>
+
+  <!-- Fonts & Tailwind -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class' };
+  </script>
+
+  <!-- Font Awesome (optional) -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    .gradient-bg { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); }
+    .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,.08); }
+    .fade-in { opacity: 0; transform: translateY(18px); transition: all .6s ease; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .skill-bar { height: 8px; border-radius: 999px; background: linear-gradient(90deg,#667eea,#764ba2); width: 0%; }
+    .nav-link { position: relative; transition: color .2s ease; }
+    .nav-link::after { content:''; position:absolute; width:0; height:2px; bottom:-4px; left:0; background:linear-gradient(90deg,#667eea,#764ba2); transition:width .25s ease; }
+    .nav-link:hover::after { width:100%; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .card-hover, .skill-bar { transition: none !important; animation: none !important; transform: none !important; }
+    }
+
+    :focus { outline: none; }
+    :focus-visible { outline: 3px solid rgba(102,126,234,.22); outline-offset: 3px; border-radius: 6px; }
+
+    .toast { position: fixed; right: 1rem; bottom: 1.25rem; background: rgba(16,185,129,.95); color: white; padding: .65rem 1rem; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,.12); z-index: 60; }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+  <header class="fixed top-0 w-full z-50">
+    <nav class="bg-white/90 dark:bg-gray-800/90 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between py-4">
+          <div class="flex items-center gap-4">
+            <a href="/" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent" aria-label="Navoday Kopawar home">Navoday Kopawar</a>
+            <a href="/resume.pdf" class="hidden sm:inline-block px-3 py-1 rounded-md border border-gray-200 dark:border-gray-700 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700" download>Download Resume</a>
+          </div>
+
+          <div class="hidden md:flex items-center space-x-6" role="menubar" aria-label="Main navigation">
+            <a href="#home" class="nav-link text-gray-700 dark:text-gray-300">Home</a>
+            <a href="#about" class="nav-link text-gray-700 dark:text-gray-300">About</a>
+            <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300">Skills</a>
+            <a href="#services" class="nav-link text-gray-700 dark:text-gray-300">Services</a>
+            <a href="#projects" class="nav-link text-gray-700 dark:text-gray-300">Projects</a>
+            <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300">Contact</a>
+
+            <!-- Desktop theme toggle -->
+            <button id="theme-toggle" class="p-2 rounded-md text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700" aria-label="Toggle color theme" title="Toggle theme">
+              <i class="fas fa-moon" id="theme-toggle-dark-icon" aria-hidden="true"></i>
+              <i class="fas fa-sun hidden" id="theme-toggle-light-icon" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <!-- mobile controls (includes mobile theme toggle) -->
+          <div class="md:hidden flex items-center gap-2">
+            <a href="/resume.pdf" class="p-2 rounded-md border border-gray-200 dark:border-gray-700 text-sm" download aria-label="Download resume">
+              <i class="fas fa-file-download" aria-hidden="true"></i>
+            </a>
+
+            <!-- mobile theme toggle -->
+            <button id="theme-toggle-mobile" class="p-2 rounded-md text-gray-700 dark:text-gray-300" aria-label="Toggle color theme (mobile)" title="Toggle theme">
+              <i class="fas fa-moon" id="theme-toggle-mobile-dark-icon" aria-hidden="true"></i>
+              <i class="fas fa-sun hidden" id="theme-toggle-mobile-light-icon" aria-hidden="true"></i>
+            </button>
+
+            <button id="mobileToggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open mobile menu">
+              <i class="fas fa-bars text-xl" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <nav id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700" aria-hidden="true">
+        <div class="px-4 py-2 space-y-2">
+          <a href="#home" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Home</a>
+          <a href="#about" class="nav-link block py-2 text-gray-700 dark:text-gray-300">About</a>
+          <a href="#skills" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Skills</a>
+          <a href="#services" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Services</a>
+          <a href="#projects" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Projects</a>
+          <a href="#contact" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Contact</a>
+        </div>
+      </nav>
+    </nav>
+  </header>
+
+  <main class="pt-20">
+    <!-- Home -->
+    <section id="home" class="min-h-screen gradient-bg flex items-center justify-center pt-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="text-white fade-in">
+            <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Navoday</span></h1>
+            <p class="text-xl md:text-2xl mb-3 text-purple-100">Aspiring Computer Science Engineer</p>
+            <p class="text-lg mb-6 text-purple-200 leading-relaxed">Passionate about creating innovative web solutions and solving complex algorithmic challenges. Currently pursuing Computer Science Engineering with a focus on modern web technologies.</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#projects" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition duration-300 text-center">View My Work</a>
+              <a href="#contact" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 text-center">Hire Me</a>
+            </div>
+          </div>
+
+          <div class="flex justify-center fade-in">
+            <!-- Profile image: preload + high priority + responsive attributes for faster load -->
+            <div class="w-72 h-72 rounded-full overflow-hidden border-4 border-white/20 shadow-lg">
+              <img
+                src="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png"
+                srcset="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png 1x"
+                alt="Navoday Kopawar"
+                width="288" height="288"
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                class="w-full h-full object-cover"
+                onerror="this.style.display='none'"
+              >
+              <!-- fallback (visually hidden when image loads) -->
+              <div class="profile-placeholder gradient-bg w-full h-full" aria-hidden="true" style="display:none"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">About Me</h2>
+          <div class="w-20 h-1 gradient-bg mx-auto rounded"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold mb-4">My Journey</h3>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Passionate Computer Science student with a strong foundation in web development, object-oriented programming, and problem-solving. Skilled in building responsive and intuitive web applications using JavaScript, HTML, CSS, and Java.</p>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">I actively sharpen my algorithmic thinking through consistent practice in data structures and algorithms. Eager to learn and adapt to emerging technologies to build impactful, efficient, and user-centric solutions.</p>
+          </div>
+
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold mb-6">Education</h3>
+            <div class="space-y-6">
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h4 class="font-semibold text-lg">B.E. Computer Science & Engineering</h4>
+                <p class="text-purple-600 font-medium">Jawaharlal Darda Institute of Engineering and Technology, Yavatmal</p>
+                <p class="text-gray-600 dark:text-gray-300">2021 - 2025 | CGPA: 8.28</p>
+              </div>
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h4 class="font-semibold text-lg">Higher Secondary Certificate (HSC)</h4>
+                <p class="text-purple-600 font-medium">Janata Mahavidyalaya, Chandrapur</p>
+                <p class="text-gray-600 dark:text-gray-300">2020 - 2021 | 90.33%</p>
+              </div>
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+                <h4 class="font-semibold text-lg">Secondary School Certificate (SSC)</h4>
+                <p class="text-purple-600 font-medium">Janata Vidyalaya, Pombhuurna</p>
+                <p class="text-gray-600 dark:text-gray-300">2018 - 2019 | 74.40%</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">My Skills</h2>
+          <div class="w-20 h-1 bg-blue-600 mx-auto rounded"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- skill cards omitted for brevity (same as existing content) -->
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fab fa-java text-3xl text-orange-600 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">Java</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="85" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fab fa-js-square text-3xl text-yellow-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">JavaScript</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fab fa-react text-3xl text-blue-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">React</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fab fa-html5 text-3xl text-red-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">HTML/CSS</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fab fa-node-js text-3xl text-green-600 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">Node.js</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"></div></div>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4"><i class="fas fa-database text-3xl text-blue-700 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">SQL</h3></div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services (omitted for brevity; keep existing markup) -->
+    <section id="services" class="py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 fade-in"><h2 class="text-3xl md:text-4xl font-bold mb-2">Services</h2><div class="w-20 h-1 gradient-bg mx-auto rounded"></div></div>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-code text-white text-2xl" aria-hidden="true"></i></div>
+            <h3 class="text-xl font-semibold mb-3 text-center">Web Development</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-center">Creating responsive, user-friendly websites with modern technologies and best practices.</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-palette text-white text-2xl" aria-hidden="true"></i></div>
+            <h3 class="text-xl font-semibold mb-3 text-center">Logo Design</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-center">Crafting clean and modern brand identities that represent your business perfectly.</p>
+          </div>
+          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
+            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-user text-white text-2xl" aria-hidden="true"></i></div>
+            <h3 class="text-xl font-semibold mb-3 text-center">Portfolio Websites</h3>
+            <p class="text-gray-600 dark:text-gray-300 text-center">Building personal and professional portfolios with modern aesthetics and functionality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects (omitted for brevity; keep existing markup) -->
+    <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 fade-in"><h2 class="text-3xl md:text-4xl font-bold mb-2">Featured Projects</h2><div class="w-20 h-1 gradient-bg mx-auto rounded"></div></div>
+        <div class="grid md:grid-cols-2 gap-8">
+          <!-- Project cards (keep as-is, or add links) -->
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-brain text-white text-6xl" aria-hidden="true"></i></div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Emotionally Intelligent AI</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-3">A multimodal human computer interface focusing on AI-driven emotional intelligence.</p>
+              <div class="flex flex-wrap gap-2 mb-4"><span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">AI/ML</span><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span></div>
+              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+            </div>
+          </article>
+
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-university text-white text-6xl" aria-hidden="true"></i></div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">College Website (JDIET)</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-3">Professional website for Jawaharlal Darda Institute of Engineering and Technology.</p>
+              <div class="flex flex-wrap gap-2 mb-4"><span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">HTML</span><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">CSS</span></div>
+              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+            </div>
+          </article>
+
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-lock text-white text-6xl" aria-hidden="true"></i></div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Secure Authentication System</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-3">Registration/login system with secure password handling and robust auth features.</p>
+              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+            </div>
+          </article>
+
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-tv text-white text-6xl" aria-hidden="true"></i></div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Netflix & Amazon UI Recreation</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-3">Frontend UI recreations demonstrating design and responsive skills.</p>
+              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">Get In Touch</h2>
+          <div class="w-20 h-1 gradient-bg mx-auto rounded"></div>
+          <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Ready to work together? I'd love to hear about your project and discuss how I can help bring your ideas to life.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-12">
+          <div class="fade-in">
+            <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
+            <div class="space-y-6">
+              <div class="flex items-center">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fas fa-envelope text-white" aria-hidden="true"></i></div>
+                <div>
+                  <h4 class="font-semibold">Email</h4>
+                  <p><a href="mailto:navodaykopawar@gmail.com" class="text-gray-600 dark:text-gray-300 hover:underline">navodaykopawar@gmail.com</a></p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fas fa-phone text-white" aria-hidden="true"></i></div>
+                <div>
+                  <h4 class="font-semibold">Phone</h4>
+                  <p><a href="tel:+918767378406" class="text-gray-600 dark:text-gray-300 hover:underline">+91 8767378406</a></p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fab fa-linkedin text-white" aria-hidden="true"></i></div>
+                <div>
+                  <h4 class="font-semibold">LinkedIn</h4>
+                  <p><a href="https://www.linkedin.com/in/navodaykopawar" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-300 hover:underline">www.linkedin.com/in/navodaykopawar</a></p>
+                </div>
+              </div>
+
+              <div class="flex items-center">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fab fa-github text-white" aria-hidden="true"></i></div>
+                <div>
+                  <h4 class="font-semibold">GitHub</h4>
+                  <p><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-300 hover:underline">github.com/navoday-kopawar</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fade-in">
+            <form id="contactForm" class="space-y-6" novalidate>
+              <div>
+                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label>
+                <input id="name" name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
+              </div>
+
+              <div>
+                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
+                <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
+              </div>
+
+              <div>
+                <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label>
+                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300 resize-none"></textarea>
+              </div>
+
+              <button id="contactSubmit" type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-gray-800 text-white py-8 dark:bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <p class="text-gray-400 copyright">© <span id="footerYear"></span> Navoday Atul Kopawar. All rights reserved.</p>
+      <div class="flex justify-center space-x-6 mt-4">
+        <a href="https://www.linkedin.com/in/navodaykopawar" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+          <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+        </a>
+        <a href="https://github.com/navoday-kopawar" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+          <i class="fab fa-github text-xl" aria-hidden="true"></i>
+        </a>
+        <a href="mailto:navodaykopawar@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Email">
+          <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Elements
+    const mobileMenuEl = document.getElementById('mobileMenu');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const contactForm = document.getElementById('contactForm');
+    const contactSubmit = document.getElementById('contactSubmit');
+
+    // Desktop theme toggle icons
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+
+    // Mobile theme toggle icons
+    const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+    const themeToggleMobileDarkIcon = document.getElementById('theme-toggle-mobile-dark-icon');
+    const themeToggleMobileLightIcon = document.getElementById('theme-toggle-mobile-light-icon');
+
+    // Smooth scrolling (same-page anchors)
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        if (location.pathname === this.pathname && location.hostname === this.hostname) {
+          e.preventDefault();
+          const target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // close mobile menu if open
+          if (mobileMenuEl && !mobileMenuEl.classList.contains('hidden')) {
+            mobileMenuEl.classList.add('hidden');
+            mobileMenuEl.setAttribute('aria-hidden', 'true');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
+    });
+
+    // IntersectionObserver for fade-in
+    const ioOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, ioOptions);
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    // Accessible mobile menu toggle
+    if (mobileToggle && mobileMenuEl) {
+      mobileToggle.addEventListener('click', () => {
+        const isHidden = mobileMenuEl.classList.toggle('hidden');
+        mobileMenuEl.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
+        mobileToggle.setAttribute('aria-expanded', (!isHidden).toString());
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenuEl.classList.contains('hidden')) {
+          mobileMenuEl.classList.add('hidden');
+          mobileMenuEl.setAttribute('aria-hidden', 'true');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
+
+    // Skill bar animation when visible
+    document.querySelectorAll('.skill-bar').forEach(bar => {
+      const percent = parseInt(bar.dataset.percent || '0', 10);
+      bar.style.width = '0%';
+      const pb = new IntersectionObserver((entries, obs) => {
+        if (entries[0].isIntersecting) {
+          bar.style.transition = 'width 1.2s ease';
+          bar.style.width = percent + '%';
+          bar.setAttribute('aria-valuenow', percent);
+          obs.disconnect();
+        }
+      }, { threshold: 0.3 });
+      pb.observe(bar);
+    });
+
+    // Active navigation highlighting using getBoundingClientRect
+    function updateActiveNav() {
+      const headerOffset = 120;
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      let closest = null;
+      let closestDistance = Infinity;
+      sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        const distance = Math.abs(rect.top - headerOffset);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closest = section.getAttribute('id');
+        }
+      });
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.remove('text-purple-600', 'dark:text-purple-600');
+        const href = link.getAttribute('href');
+        if (href === `#${closest}`) link.classList.add('text-purple-600', 'dark:text-purple-600');
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    window.addEventListener('resize', updateActiveNav);
+    updateActiveNav();
+
+    // Contact form (demo): clear fields and show toast
+    if (contactForm) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        contactSubmit.disabled = true;
+        const originalText = contactSubmit.textContent;
+        contactSubmit.textContent = 'Sending...';
+        const name = document.getElementById('name'), email = document.getElementById('email'), message = document.getElementById('message');
+        try {
+          // place backend request here if available
+          await new Promise(r => setTimeout(r, 700));
+          name.value = ''; email.value = ''; message.value = '';
+          const toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role','status'); toast.textContent = 'Thanks — your message was sent!';
+          document.body.appendChild(toast);
+          setTimeout(() => toast.remove(), 3500);
+        } catch (err) {
+          alert('There was an error sending the message. Try again later.');
+        } finally {
+          contactSubmit.disabled = false;
+          contactSubmit.textContent = originalText;
+        }
+      });
+    }
+
+    // Theme handling (desktop + mobile toggles), default follows device unless user set preference
+    const setIconsForTheme = (isDark) => {
+      // Desktop
+      themeToggleDarkIcon && themeToggleDarkIcon.classList.toggle('hidden', isDark);
+      themeToggleLightIcon && themeToggleLightIcon.classList.toggle('hidden', !isDark);
+      // Mobile
+      themeToggleMobileDarkIcon && themeToggleMobileDarkIcon.classList.toggle('hidden', isDark);
+      themeToggleMobileLightIcon && themeToggleMobileLightIcon.classList.toggle('hidden', !isDark);
+    };
+
+    const applyInitialTheme = () => {
+      const stored = localStorage.getItem('color-theme');
+      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const useDark = (stored === 'dark') || (!stored && prefersDark);
+      if (useDark) document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');
+      setIconsForTheme(useDark);
+    };
+    applyInitialTheme();
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+      setIconsForTheme(isDark);
+    }
+
+    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
+    if (themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+    // Footer year
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
