@@ -1,68 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Navoday Atul Kopawar — Portfolio</title>
-  <meta name="description" content="Navoday Kopawar — Computer Science Engineer. Web Developer. Portfolio showcasing React, Node.js, Java projects and UI work." />
+  <meta name="description" content="Navoday Kopawar — Computer Science Engineer and Web Developer Portfolio" />
+  <!-- SEO / Social -->
+  <meta property="og:title" content="Navoday Kopawar — Portfolio">
+  <meta property="og:description" content="Computer Science Engineer">
+  <meta property="og:type" content="website">
+  <meta property="og:image"
+    content="https://navoday-kopawar.github.io/navoday-portfolio/assets/og/og-portfolio-navoday.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Navoday Kopawar Portfolio Banner">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image"
+    content="https://navoday-kopawar.github.io/navoday-portfolio/assets/og/og-portfolio-navoday.png">
 
-  <!-- Preload profile image for faster rendering -->
-  <link rel="preload" as="image" href="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png">
-  <!-- favicon -->
-  <link rel="icon" href="/favicon.ico" />
-
-  <!-- Ensure theme is applied ASAP to avoid flash: default to device preference if no stored preference -->
+  <!-- 3D Model Viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+  </script>
+  <!-- Google Analytics (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1G165JJ85H"></script>
   <script>
-    (function() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-1G165JJ85H');
+  </script>
+  <!-- Theme bootstrap (prevents flash) -->
+  <script>
+    (function () {
       try {
-        const stored = localStorage.getItem('color-theme');
-        if (stored === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else if (stored === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-          document.documentElement.classList.add('dark');
+        const theme = localStorage.getItem("color-theme");
+        if (theme === "dark" || (!theme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.classList.add("dark");
         }
-        // otherwise leave as light by default
-      } catch (e) {
-        // ignore errors (e.g., localStorage disabled)
-      }
+      } catch { }
     })();
   </script>
-
-  <!-- Fonts & Tailwind -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    tailwind.config = { darkMode: 'class' };
+    tailwind.config = { darkMode: "class" }
   </script>
 
-  <!-- Font Awesome (optional) -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  <style>
-    * { font-family: 'Inter', sans-serif; }
-    .gradient-bg { background: linear-gradient(135deg,#667eea 0%,#764ba2 100%); }
-    .card-hover { transition: transform .25s ease, box-shadow .25s ease; }
-    .card-hover:hover { transform: translateY(-8px); box-shadow: 0 18px 40px rgba(0,0,0,.08); }
-    .fade-in { opacity: 0; transform: translateY(18px); transition: all .6s ease; }
-    .fade-in.visible { opacity: 1; transform: translateY(0); }
-    .skill-bar { height: 8px; border-radius: 999px; background: linear-gradient(90deg,#667eea,#764ba2); width: 0%; }
-    .nav-link { position: relative; transition: color .2s ease; }
-    .nav-link::after { content:''; position:absolute; width:0; height:2px; bottom:-4px; left:0; background:linear-gradient(90deg,#667eea,#764ba2); transition:width .25s ease; }
-    .nav-link:hover::after { width:100%; }
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./assets/css/custom.css">
+  <link rel="stylesheet" href="./assets/css/weather-window.css">
+  <link rel="stylesheet" href="./assets/css/nkcoinhub-viewer.css">
+  <link rel="stylesheet" href="./assets/css/portfolio-card.css">
 
-    @media (prefers-reduced-motion: reduce) {
-      .fade-in, .card-hover, .skill-bar { transition: none !important; animation: none !important; transform: none !important; }
-    }
 
-    :focus { outline: none; }
-    :focus-visible { outline: 3px solid rgba(102,126,234,.22); outline-offset: 3px; border-radius: 6px; }
 
-    .toast { position: fixed; right: 1rem; bottom: 1.25rem; background: rgba(16,185,129,.95); color: white; padding: .65rem 1rem; border-radius: 8px; box-shadow: 0 8px 20px rgba(0,0,0,.12); z-index: 60; }
-  </style>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
@@ -71,11 +72,14 @@
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between py-4">
           <div class="flex items-center gap-4">
-            <a href="/" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent" aria-label="Navoday Kopawar home">Navoday Kopawar</a>
-            <a href="/resume.pdf" class="hidden sm:inline-block px-3 py-1 rounded-md border border-gray-200 dark:border-gray-700 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700" download>Download Resume</a>
+            <a href="#home" class="text-2xl font-bold gradient-bg bg-clip-text text-transparent"
+              aria-label="Navoday Kopawar home">Navoday Kopawar</a>
+            <a href="./Navoday_A_Kopawar_8767378406.pdf"
+              class="hidden sm:inline-block px-3 py-1 rounded-md border border-gray-200 dark:border-gray-700 text-sm font-medium hover:bg-gray-100 dark:hover:bg-gray-700"
+              download>Resume</a>
           </div>
 
-          <div class="hidden md:flex items-center space-x-6" role="menubar" aria-label="Main navigation">
+          <nav class="hidden md:flex items-center space-x-6" aria-label="Main navigation">
             <a href="#home" class="nav-link text-gray-700 dark:text-gray-300">Home</a>
             <a href="#about" class="nav-link text-gray-700 dark:text-gray-300">About</a>
             <a href="#skills" class="nav-link text-gray-700 dark:text-gray-300">Skills</a>
@@ -84,25 +88,30 @@
             <a href="#contact" class="nav-link text-gray-700 dark:text-gray-300">Contact</a>
 
             <!-- Desktop theme toggle -->
-            <button id="theme-toggle" class="p-2 rounded-md text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700" aria-label="Toggle color theme" title="Toggle theme">
+            <button id="theme-toggle"
+              class="p-2 rounded-md text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700"
+              aria-label="Toggle color theme" title="Toggle theme">
               <i class="fas fa-moon" id="theme-toggle-dark-icon" aria-hidden="true"></i>
               <i class="fas fa-sun hidden" id="theme-toggle-light-icon" aria-hidden="true"></i>
             </button>
-          </div>
+          </nav>
 
           <!-- mobile controls (includes mobile theme toggle) -->
           <div class="md:hidden flex items-center gap-2">
-            <a href="/resume.pdf" class="p-2 rounded-md border border-gray-200 dark:border-gray-700 text-sm" download aria-label="Download resume">
+            <a href="/resume.pdf" class="p-2 rounded-md border border-gray-200 dark:border-gray-700 text-sm" download
+              aria-label="Download resume">
               <i class="fas fa-file-download" aria-hidden="true"></i>
             </a>
 
             <!-- mobile theme toggle -->
-            <button id="theme-toggle-mobile" class="p-2 rounded-md text-gray-700 dark:text-gray-300" aria-label="Toggle color theme (mobile)" title="Toggle theme">
+            <button id="theme-toggle-mobile" class="p-2 rounded-md text-gray-700 dark:text-gray-300"
+              aria-label="Toggle color theme (mobile)" title="Toggle theme">
               <i class="fas fa-moon" id="theme-toggle-mobile-dark-icon" aria-hidden="true"></i>
               <i class="fas fa-sun hidden" id="theme-toggle-mobile-light-icon" aria-hidden="true"></i>
             </button>
 
-            <button id="mobileToggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open mobile menu">
+            <button id="mobileToggle" class="p-2 rounded-md text-gray-700 dark:text-gray-300" aria-controls="mobileMenu"
+              aria-expanded="false" aria-label="Open mobile menu">
               <i class="fas fa-bars text-xl" aria-hidden="true"></i>
             </button>
           </div>
@@ -110,7 +119,9 @@
       </div>
 
       <!-- Mobile Menu -->
-      <nav id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700" aria-hidden="true">
+      <aside id="mobileMenu"
+        class="hidden md:hidden bg-white dark:bg-gray-800 border-t border-gray-100 dark:border-gray-700"
+        aria-hidden="true">
         <div class="px-4 py-2 space-y-2">
           <a href="#home" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Home</a>
           <a href="#about" class="nav-link block py-2 text-gray-700 dark:text-gray-300">About</a>
@@ -119,7 +130,7 @@
           <a href="#projects" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Projects</a>
           <a href="#contact" class="nav-link block py-2 text-gray-700 dark:text-gray-300">Contact</a>
         </div>
-      </nav>
+      </aside>
     </nav>
   </header>
 
@@ -131,29 +142,27 @@
           <div class="text-white fade-in">
             <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Navoday</span></h1>
             <p class="text-xl md:text-2xl mb-3 text-purple-100">Aspiring Computer Science Engineer</p>
-            <p class="text-lg mb-6 text-purple-200 leading-relaxed">Passionate about creating innovative web solutions and solving complex algorithmic challenges. Currently pursuing Computer Science Engineering with a focus on modern web technologies.</p>
+            <p class="text-lg mb-6 text-purple-200 leading-relaxed">Passionate about creating innovative web solutions
+              and solving complex algorithmic challenges. Currently pursuing Computer Science Engineering with a focus
+              on modern web technologies.</p>
             <div class="flex flex-col sm:flex-row gap-4">
-              <a href="#projects" class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition duration-300 text-center">View My Work</a>
-              <a href="#contact" class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 text-center">Hire Me</a>
+              <a href="#projects"
+                class="bg-white text-purple-600 px-6 py-3 rounded-full font-semibold hover:bg-purple-50 transition duration-300 text-center">View
+                My Work</a>
+              <a href="#contact"
+                class="border-2 border-white text-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-purple-600 transition duration-300 text-center">Hire
+                Me</a>
             </div>
           </div>
 
           <div class="flex justify-center fade-in">
             <!-- Profile image: preload + high priority + responsive attributes for faster load -->
             <div class="w-72 h-72 rounded-full overflow-hidden border-4 border-white/20 shadow-lg">
-              <img
-                src="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png"
-                srcset="https://i.ibb.co/TqPyvvnR/1745995898533-removebg-preview.png 1x"
-                alt="Navoday Kopawar"
-                width="288" height="288"
-                loading="eager"
-                decoding="async"
-                fetchpriority="high"
-                class="w-full h-full object-cover"
-                onerror="this.style.display='none'"
-              >
+
+              <img id="profileImg" src="./assets/logos/Profile.png" alt="Navoday Kopawar" width="288" height="288"
+                loading="eager" decoding="async" class="w-full h-full object-cover">
               <!-- fallback (visually hidden when image loads) -->
-              <div class="profile-placeholder gradient-bg w-full h-full" aria-hidden="true" style="display:none"></div>
+              <div class="profile-placeholder gradient-bg w-full h-full hidden" aria-hidden="true"></div>
             </div>
           </div>
         </div>
@@ -171,24 +180,29 @@
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="fade-in">
             <h3 class="text-2xl font-semibold mb-4">My Journey</h3>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Passionate Computer Science student with a strong foundation in web development, object-oriented programming, and problem-solving. Skilled in building responsive and intuitive web applications using JavaScript, HTML, CSS, and Java.</p>
-            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">I actively sharpen my algorithmic thinking through consistent practice in data structures and algorithms. Eager to learn and adapt to emerging technologies to build impactful, efficient, and user-centric solutions.</p>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">Passionate Computer Science student with a
+              strong foundation in web development, object-oriented programming, and problem-solving. Skilled in
+              building responsive and intuitive web applications using JavaScript, HTML, CSS, and Java.</p>
+            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">I actively sharpen my algorithmic thinking
+              through consistent practice in data structures and algorithms. Eager to learn and adapt to emerging
+              technologies to build impactful, efficient, and user-centric solutions.</p>
           </div>
 
           <div class="fade-in">
             <h3 class="text-2xl font-semibold mb-6">Education</h3>
             <div class="space-y-6">
-              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg education-card">
                 <h4 class="font-semibold text-lg">B.E. Computer Science & Engineering</h4>
-                <p class="text-purple-600 font-medium">Jawaharlal Darda Institute of Engineering and Technology, Yavatmal</p>
+                <p class="text-purple-600 font-medium">Jawaharlal Darda Institute of Engineering and Technology,
+                  Yavatmal</p>
                 <p class="text-gray-600 dark:text-gray-300">2021 - 2025 | CGPA: 8.28</p>
               </div>
-              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg education-card">
                 <h4 class="font-semibold text-lg">Higher Secondary Certificate (HSC)</h4>
                 <p class="text-purple-600 font-medium">Janata Mahavidyalaya, Chandrapur</p>
                 <p class="text-gray-600 dark:text-gray-300">2020 - 2021 | 90.33%</p>
               </div>
-              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg">
+              <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-lg education-card">
                 <h4 class="font-semibold text-lg">Secondary School Certificate (SSC)</h4>
                 <p class="text-purple-600 font-medium">Janata Vidyalaya, Pombhuurna</p>
                 <p class="text-gray-600 dark:text-gray-300">2018 - 2019 | 74.40%</p>
@@ -208,31 +222,80 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
           <!-- skill cards omitted for brevity (same as existing content) -->
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fab fa-java text-3xl text-orange-600 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">Java</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="85" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"></div></div>
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/JAVA.png" alt="Java" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">Java</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="85" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="85" title="Java skill level: 85%"></div>
+            </div>
+          </div>
+
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/JS.png" alt="JavaScript" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">JavaScript</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="80" title="JavaScript skill level: 80%"></div>
+            </div>
+          </div>
+
+
+          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/REACT.png" alt="React" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">React</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="75" title="React skill level: 75%"></div>
+            </div>
           </div>
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fab fa-js-square text-3xl text-yellow-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">JavaScript</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="80" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"></div></div>
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/HTML_CSS.png" alt="HTML & CSS" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">HTML / CSS</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="90" title="HTML / CSS skill level: 90%"></div>
+            </div>
           </div>
+
+
+
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fab fa-react text-3xl text-blue-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">React</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"></div></div>
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/NJS.png" alt="Node.js" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">Node.js</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="70" title="Node.js skill level: 70%"></div>
+            </div>
           </div>
+
           <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fab fa-html5 text-3xl text-red-500 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">HTML/CSS</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="90" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="90"></div></div>
+            <div class="flex items-center mb-4">
+              <img src="./assets/logos/SQL.png" alt="SQL" class="skill-3d-icon mr-4" />
+              <h3 class="text-xl font-semibold">SQL</h3>
+            </div>
+            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
+              <div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                aria-valuenow="75" title="SQL skill level: 75%"></div>
+            </div>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fab fa-node-js text-3xl text-green-600 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">Node.js</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="70" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"></div></div>
-          </div>
-          <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg card-hover fade-in">
-            <div class="flex items-center mb-4"><i class="fas fa-database text-3xl text-blue-700 mr-4" aria-hidden="true"></i><h3 class="text-xl font-semibold">SQL</h3></div>
-            <div class="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2"><div class="skill-bar" data-percent="75" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"></div></div>
-          </div>
+
+
+
+
         </div>
       </div>
     </section>
@@ -240,70 +303,546 @@
     <!-- Services (omitted for brevity; keep existing markup) -->
     <section id="services" class="py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 fade-in"><h2 class="text-3xl md:text-4xl font-bold mb-2">Services</h2><div class="w-20 h-1 gradient-bg mx-auto rounded"></div></div>
-        <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
-            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-code text-white text-2xl" aria-hidden="true"></i></div>
-            <h3 class="text-xl font-semibold mb-3 text-center">Web Development</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-center">Creating responsive, user-friendly websites with modern technologies and best practices.</p>
+
+        <!-- Section Header -->
+        <div class="text-center mb-12 fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">Services</h2>
+          <div class="w-20 h-1 gradient-bg mx-auto rounded"></div>
+        </div>
+
+        <!-- Services Grid -->
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+
+          <!-- SERVICE 1: Web Development (PNG) -->
+          <div class="service-card fade-in">
+            <div class="service-media">
+              <img src="./assets/logos/Web-Development.png" alt="Web Development" class="service-3d-icon"
+                loading="lazy">
+            </div>
+
+            <h3 class="service-title">Web Development</h3>
+            <p class="service-desc">
+              Creating responsive, user-friendly websites with modern technologies and best practices.
+            </p>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
-            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-palette text-white text-2xl" aria-hidden="true"></i></div>
-            <h3 class="text-xl font-semibold mb-3 text-center">Logo Design</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-center">Crafting clean and modern brand identities that represent your business perfectly.</p>
+
+          <!-- SERVICE 2: Logo Design (Lottie) -->
+          <div class="service-card fade-in">
+            <div class="service-media">
+              <div class="service-3d-icon" data-lottie="./assets/js/NavoLogo.json"
+                data-fallback="./assets/logos/logo-design.png" aria-hidden="true">
+              </div>
+            </div>
+
+            <h3 class="service-title">Logo Design</h3>
+            <p class="service-desc">
+              Crafting clean and modern brand identities that represent your business perfectly.
+            </p>
           </div>
-          <div class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg card-hover fade-in border border-gray-100 dark:border-gray-700">
-            <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center mb-6 mx-auto"><i class="fas fa-user text-white text-2xl" aria-hidden="true"></i></div>
-            <h3 class="text-xl font-semibold mb-3 text-center">Portfolio Websites</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-center">Building personal and professional portfolios with modern aesthetics and functionality.</p>
+
+          <!-- SERVICE 3: Portfolio Websites (3D Card) -->
+          <div class="service-card fade-in">
+            <div class="service-media portfolio-media">
+              <div id="portfolio-card-container"></div>
+            </div>
+
+            <h3 class="service-title">Portfolio Websites</h3>
+            <p class="service-desc">
+              Building personal and professional portfolios with modern aesthetics and functionality.
+            </p>
           </div>
+
         </div>
       </div>
     </section>
 
+
     <!-- Projects (omitted for brevity; keep existing markup) -->
     <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12 fade-in"><h2 class="text-3xl md:text-4xl font-bold mb-2">Featured Projects</h2><div class="w-20 h-1 gradient-bg mx-auto rounded"></div></div>
+
+        <!-- Section Header -->
+        <div class="text-center mb-12 fade-in">
+          <h2 class="text-3xl md:text-4xl font-bold mb-2">Featured Projects</h2>
+          <div class="w-20 h-1 gradient-bg mx-auto rounded"></div>
+        </div>
+
+        <!-- Projects Grid -->
         <div class="grid md:grid-cols-2 gap-8">
-          <!-- Project cards (keep as-is, or add links) -->
+
+          <!-- Project 1 -->
+          <!-- Personal Hobby Showcase Project -->
           <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
-            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-brain text-white text-6xl" aria-hidden="true"></i></div>
+
+            <!-- 3D Model Header -->
+            <!-- NKCoinHub Header -->
+            <div class="h-48 nkcoinhub-bg">
+
+              <div class="nkcoinhub-row">
+
+                <!-- LEFT: 3D Logo -->
+                <div class="nkcoinhub-model-area">
+                  <div class="nkcoinhub-tilt">
+                    <model-viewer src="./assets/logos/BlackLogo2.glb" auto-rotate rotation-per-second="16deg"
+                      camera-controls disable-zoom interaction-prompt="none" shadow-intensity="1"
+                      class="nkcoinhub-model">
+                    </model-viewer>
+                  </div>
+                </div>
+
+                <!-- RIGHT: Text -->
+                <div class="nkcoinhub-text-wrap">
+                  <span class="nkcoinhub-text">NKCoinHub</span>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Content -->
             <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Emotionally Intelligent AI</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">A multimodal human computer interface focusing on AI-driven emotional intelligence.</p>
-              <div class="flex flex-wrap gap-2 mb-4"><span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">AI/ML</span><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">Python</span></div>
-              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+              <h3 class="text-xl font-semibold mb-2">
+                Personal Hobby Showcase Website (Coins & Currency)
+              </h3>
+
+              <p class="text-gray-600 dark:text-gray-300 mb-3">
+                NKCoinHub is a responsive web platform showcasing a personal collection
+                of coins and currency notes with structured layouts, reusable UI sections,
+                and smooth interactions.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-teal-100 text-teal-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/NK_CoinHub/" target="_blank" rel="noopener noreferrer"
+                  class="gradient-bg text-white px-4 py-2 rounded-full">
+                  Live Demo
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- Project 2 -->
+          <!-- Weather Application Project -->
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+            <!-- Weather Window Header -->
+            <div class="h-48 relative overflow-hidden bg-black flex items-center justify-center">
+              <div class="weather-window" data-weather="sunny"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-semibold mb-2">Weather Application Website</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-3">
+                A real-time weather application displaying live conditions with
+                dynamic visuals and API-based data.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                <span class="bg-purple-100 text-purple-600 px-3 py-1 rounded-full text-sm">API</span>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/smart-weather-app/" target="_blank" rel="noopener noreferrer"
+                  class="gradient-bg text-white px-4 py-2 rounded-full">Live Demo</a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">Code</a>
+              </div>
             </div>
           </article>
 
+
+          <!-- Project 3 -->
+          <!-- College Placement Tracker -->
           <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
-            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-university text-white text-6xl" aria-hidden="true"></i></div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">College Website (JDIET)</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">Professional website for Jawaharlal Darda Institute of Engineering and Technology.</p>
-              <div class="flex flex-wrap gap-2 mb-4"><span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">HTML</span><span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">CSS</span></div>
-              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+
+            <!-- Header -->
+            <div class="h-48 placement-bg flex flex-col justify-center px-6">
+              <span class="placement-badge">Placement Analytics Platform</span>
+              <h3 class="placement-title">
+                College Placement Tracker
+              </h3>
+              <p class="placement-subtitle">
+                Manage students, colleges, recruiters & job roles
+              </p>
             </div>
+
+            <!-- Modules Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="placement-module">
+                  <i class="fa-solid fa-building-columns"></i>
+                  <span>Colleges</span>
+                </div>
+
+                <div class="placement-module">
+                  <i class="fa-solid fa-user-graduate"></i>
+                  <span>Students</span>
+                </div>
+
+                <div class="placement-module">
+                  <i class="fa-solid fa-building"></i>
+                  <span>Companies</span>
+                </div>
+
+                <div class="placement-module">
+                  <i class="fa-solid fa-briefcase"></i>
+                  <span>Job Roles</span>
+                </div>
+
+              </div>
+
+              <!-- Tech + Actions -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-orange-100 text-orange-600 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-sm">JavaScript</span>
+              </div>
+
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/college-placement-tracker/"
+                  class="gradient-bg text-white px-4 py-2 rounded-full">
+                  View Project
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
           </article>
 
+
+          <!-- Project 4 -->
+          <!-- Tribal Culture Digital Museum -->
           <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
-            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-lock text-white text-6xl" aria-hidden="true"></i></div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Secure Authentication System</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">Registration/login system with secure password handling and robust auth features.</p>
-              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+
+            <!-- Header -->
+            <div class="h-48 tribal-bg flex flex-col justify-center px-6">
+              <span class="tribal-badge">Cultural Preservation Platform</span>
+              <h3 class="tribal-title">
+                Tribal Culture Digital Museum
+              </h3>
+              <p class="tribal-subtitle">
+                Preserving India’s indigenous heritage through immersive visuals
+              </p>
             </div>
+
+            <!-- Feature Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="tribal-feature">
+                  <i class="fa-solid fa-people-group"></i>
+                  <span>Tribes Overview</span>
+                </div>
+
+                <div class="tribal-feature">
+                  <i class="fa-solid fa-masks-theater"></i>
+                  <span>Festivals & Rituals</span>
+                </div>
+
+                <div class="tribal-feature">
+                  <i class="fa-solid fa-images"></i>
+                  <span>Heritage Gallery</span>
+                </div>
+
+                <div class="tribal-feature">
+                  <i class="fa-solid fa-map-location-dot"></i>
+                  <span>Interactive Map</span>
+                </div>
+
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/Tribal_Culture_Digital_Museum/" target="_blank"
+                  rel="noopener noreferrer" class="gradient-bg text-white px-4 py-2 rounded-full">
+                  View Project
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
           </article>
 
+          <!-- Project 5 -->
+          <!-- MAZI_PMPML – One Day Ticket System -->
           <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
-            <div class="h-48 gradient-bg flex items-center justify-center"><i class="fas fa-tv text-white text-6xl" aria-hidden="true"></i></div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Netflix & Amazon UI Recreation</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-3">Frontend UI recreations demonstrating design and responsive skills.</p>
-              <div class="flex gap-3"><a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">View Details</a><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border">Code</a></div>
+
+            <!-- Header -->
+            <div class="h-48 pmpml-bg flex flex-col justify-center px-6">
+              <span class="pmpml-badge">Smart Public Transport System</span>
+              <h3 class="pmpml-title">
+                MAZI_PMPML – One Day Ticket
+              </h3>
+              <p class="pmpml-subtitle">
+                Digital bus ticket with real-time validity & QR verification
+              </p>
             </div>
+
+            <!-- Feature Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="pmpml-feature">
+                  <i class="fa-solid fa-qrcode"></i>
+                  <span>QR Ticket</span>
+                </div>
+
+                <div class="pmpml-feature">
+                  <i class="fa-solid fa-clock"></i>
+                  <span>Live Validity Timer</span>
+                </div>
+
+                <div class="pmpml-feature">
+                  <i class="fa-solid fa-mobile-screen-button"></i>
+                  <span>Mobile Friendly UI</span>
+                </div>
+
+                <div class="pmpml-feature">
+                  <i class="fa-solid fa-shield-halved"></i>
+                  <span>Misuse Protection</span>
+                </div>
+
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/MAZI_PMPML-OneDayTicket" target="_blank"
+                  rel="noopener noreferrer" class="gradient-bg text-white px-4 py-2 rounded-full">
+                  View Project
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
           </article>
+
+          <!-- Project 6 -->
+          <!-- Employee Payroll System -->
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+
+            <!-- Header -->
+            <div class="h-48 payroll-bg flex flex-col justify-center px-6">
+              <span class="payroll-badge">Database & Payroll Automation</span>
+              <h3 class="payroll-title">
+                Employee Payroll System
+              </h3>
+              <p class="payroll-subtitle">
+                Automated salary calculation & payroll reporting using SQL
+              </p>
+            </div>
+
+            <!-- Feature Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="payroll-feature">
+                  <i class="fa-solid fa-database"></i>
+                  <span>EMP & DEPT Tables</span>
+                </div>
+
+                <div class="payroll-feature">
+                  <i class="fa-solid fa-calculator"></i>
+                  <span>Salary Calculation</span>
+                </div>
+
+                <div class="payroll-feature">
+                  <i class="fa-solid fa-repeat"></i>
+                  <span>Monthly Payroll</span>
+                </div>
+
+                <div class="payroll-feature">
+                  <i class="fa-solid fa-chart-column"></i>
+                  <span>Payroll Reports</span>
+                </div>
+
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">MySQL</span>
+                <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-sm">SQL</span>
+                <span class="bg-gray-100 text-gray-700 px-3 py-1 rounded-full text-sm">RDBMS</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a href="#" class="gradient-bg text-white px-4 py-2 rounded-full">
+                  View Details
+                </a>
+                <!-- <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a> -->
+              </div>
+            </div>
+
+          </article>
+
+          <!-- Project 7 -->
+          <!-- UI Showcase – Web Interfaces -->
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+
+            <!-- Header -->
+            <div class="h-48 ui-bg flex flex-col justify-center px-6">
+              <span class="ui-badge">Frontend UI Collection</span>
+              <h3 class="ui-title">
+                UI Showcase – Web Interfaces
+              </h3>
+              <p class="ui-subtitle">
+                Modern UI designs & frontend recreations
+              </p>
+            </div>
+
+            <!-- UI Types Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="ui-feature">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span>E-Commerce UI</span>
+                </div>
+
+                <div class="ui-feature">
+                  <i class="fa-solid fa-tv"></i>
+                  <span>OTT Platforms</span>
+                </div>
+
+                <div class="ui-feature">
+                  <i class="fa-solid fa-window-maximize"></i>
+                  <span>Landing Pages</span>
+                </div>
+
+                <div class="ui-feature">
+                  <i class="fa-solid fa-palette"></i>
+                  <span>UI Components</span>
+                </div>
+
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">CSS</span>
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/ui-showcase/" target="_blank" rel="noopener noreferrer"
+                  class="gradient-bg text-white px-4 py-2 rounded-full">
+                  View Designs
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+
+          <!-- Project 8 -->
+          <!-- Mini Games Collection -->
+          <article class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden card-hover fade-in">
+
+            <!-- Header -->
+            <div class="h-48 games-bg flex flex-col justify-center px-6">
+              <span class="games-badge">Interactive JavaScript Games</span>
+              <h3 class="games-title">
+                Mini Games Collection
+              </h3>
+              <p class="games-subtitle">
+                A growing collection of fun browser-based games
+              </p>
+            </div>
+
+            <!-- Games Preview -->
+            <div class="p-6">
+              <div class="grid grid-cols-2 gap-4 mb-5">
+
+                <div class="games-feature">
+                  <i class="fa-solid fa-gamepad"></i>
+                  <span>Snake Game</span>
+                </div>
+
+                <div class="games-feature">
+                  <i class="fa-solid fa-dice"></i>
+                  <span>Dice Game</span>
+                </div>
+
+                <div class="games-feature">
+                  <i class="fa-solid fa-puzzle-piece"></i>
+                  <span>Puzzle Games</span>
+                </div>
+
+                <div class="games-feature coming-soon">
+                  <i class="fa-solid fa-hourglass-half"></i>
+                  <span>More Coming Soon</span>
+                </div>
+
+              </div>
+
+              <!-- Tech Stack -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-sm">JavaScript</span>
+                <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">HTML</span>
+                <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm">CSS</span>
+              </div>
+
+              <!-- Actions -->
+              <div class="flex gap-3">
+                <a href="https://navoday-kopawar.github.io/mini-games/" target="_blank" rel="noopener noreferrer"
+                  class="gradient-bg text-white px-4 py-2 rounded-full">
+
+                  View Collection
+                </a>
+                <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                  class="px-4 py-2 rounded-full border">
+                  Code
+                </a>
+              </div>
+            </div>
+
+          </article>
+
+
         </div>
       </div>
     </section>
@@ -314,66 +853,115 @@
         <div class="text-center mb-10 fade-in">
           <h2 class="text-3xl md:text-4xl font-bold mb-2">Get In Touch</h2>
           <div class="w-20 h-1 gradient-bg mx-auto rounded"></div>
-          <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Ready to work together? I'd love to hear about your project and discuss how I can help bring your ideas to life.</p>
+          <p class="text-gray-600 dark:text-gray-300 mt-4 max-w-2xl mx-auto">Ready to work together? I'd love to hear
+            about your project and discuss how I can help bring your ideas to life.</p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-12">
           <div class="fade-in">
             <h3 class="text-2xl font-semibold mb-6">Contact Information</h3>
             <div class="space-y-6">
-              <div class="flex items-center">
-                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fas fa-envelope text-white" aria-hidden="true"></i></div>
+              <!-- Email -->
+              <a href="mailto:navodaykopawar@gmail.com" class="flex items-center gap-4 hover:opacity-90 transition">
+
+                <img src="./assets/logos/GmaiIcon.png" alt="Email" class="contact-icon" />
+
                 <div>
                   <h4 class="font-semibold">Email</h4>
-                  <p><a href="mailto:navodaykopawar@gmail.com" class="text-gray-600 dark:text-gray-300 hover:underline">navodaykopawar@gmail.com</a></p>
+                  <p class="text-gray-600 dark:text-gray-300">
+                    navodaykopawar@gmail.com
+                  </p>
                 </div>
-              </div>
 
-              <div class="flex items-center">
-                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fas fa-phone text-white" aria-hidden="true"></i></div>
+              </a>
+
+              <!-- Phone -->
+              <a href="tel:+918767378406" class="flex items-center gap-4 hover:opacity-90 transition">
+
+                <img src="./assets/logos/PhoneCallAppIcon.png" alt="Phone" class="contact-icon" />
+
                 <div>
                   <h4 class="font-semibold">Phone</h4>
-                  <p><a href="tel:+918767378406" class="text-gray-600 dark:text-gray-300 hover:underline">+91 8767378406</a></p>
+                  <p class="text-gray-600 dark:text-gray-300">
+                    +91 8767378406
+                  </p>
                 </div>
-              </div>
 
-              <div class="flex items-center">
-                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fab fa-linkedin text-white" aria-hidden="true"></i></div>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/navodaykopawar" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 hover:opacity-90 transition">
+
+                <img src="./assets/logos/LinkedInIcon.png" alt="LinkedIn" class="contact-icon" />
+
                 <div>
                   <h4 class="font-semibold">LinkedIn</h4>
-                  <p><a href="https://www.linkedin.com/in/navodaykopawar" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-300 hover:underline">www.linkedin.com/in/navodaykopawar</a></p>
+                  <p class="text-gray-600 dark:text-gray-300">
+                    linkedin.com/in/navodaykopawar
+                  </p>
                 </div>
-              </div>
 
-              <div class="flex items-center">
-                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center mr-4"><i class="fab fa-github text-white" aria-hidden="true"></i></div>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer"
+                class="flex items-center gap-4 hover:opacity-90 transition">
+
+                <img src="./assets/logos/GitHubIcon.png" alt="GitHub" class="contact-icon" />
+
                 <div>
                   <h4 class="font-semibold">GitHub</h4>
-                  <p><a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" class="text-gray-600 dark:text-gray-300 hover:underline">github.com/navoday-kopawar</a></p>
+                  <p class="text-gray-600 dark:text-gray-300">
+                    github.com/navoday-kopawar
+                  </p>
                 </div>
-              </div>
+
+              </a>
+
             </div>
           </div>
-
           <div class="fade-in">
+
             <form id="contactForm" class="space-y-6" novalidate>
+              <!-- Name -->
               <div>
-                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Name</label>
-                <input id="name" name="name" type="text" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
+                <label for="name" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                  Name
+                </label>
+                <input id="name" name="name" type="text" required placeholder="Enter your full name" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg
+      focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
               </div>
 
+              <!-- Email -->
               <div>
-                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Email</label>
-                <input id="email" name="email" type="email" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
+                <label for="email" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                  Email
+                </label>
+                <input id="email" name="email" type="email" required placeholder="Enter your email address" class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg
+      focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300" />
               </div>
 
+              <!-- Message -->
               <div>
-                <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">Message</label>
-                <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300 resize-none"></textarea>
+                <label for="message" class="block text-gray-700 dark:text-gray-300 font-medium mb-2">
+                  Message
+                </label>
+                <textarea id="message" name="message" rows="5" required placeholder="Write your message here..." class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 rounded-lg
+      focus-visible:ring-2 focus-visible:ring-purple-500 outline-none transition duration-300 resize-none"></textarea>
               </div>
 
-              <button id="contactSubmit" type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold hover:opacity-90 transition duration-300">Send Message</button>
+              <!-- Submit -->
+              <button id="contactSubmit" type="submit" class="w-full gradient-bg text-white py-3 rounded-lg font-semibold
+    hover:opacity-90 transition duration-300">
+                Send Message
+              </button>
             </form>
+
+
+
+
+
           </div>
         </div>
       </div>
@@ -381,177 +969,107 @@
   </main>
 
   <footer class="bg-gray-800 text-white py-8 dark:bg-gray-900">
+
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <p class="text-gray-400 copyright">© <span id="footerYear"></span> Navoday Atul Kopawar. All rights reserved.</p>
-      <div class="flex justify-center space-x-6 mt-4">
-        <a href="https://www.linkedin.com/in/navodaykopawar" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-          <i class="fab fa-linkedin text-xl" aria-hidden="true"></i>
+      <!-- Glowing divider line -->
+
+
+      <div class="flex justify-center gap-4 mt-4">
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/navodaykopawar" target="_blank" rel="noopener noreferrer"
+          aria-label="LinkedIn" class="footer-icon">
+          <i class="fab fa-linkedin"></i>
+          <img src="./assets/logos/LinkedInIcon.png" alt="LinkedIn 3D" />
         </a>
-        <a href="https://github.com/navoday-kopawar" class="text-gray-400 hover:text-white transition" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-          <i class="fab fa-github text-xl" aria-hidden="true"></i>
+
+        <!-- GitHub -->
+        <a href="https://github.com/navoday-kopawar" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+          class="footer-icon">
+          <i class="fab fa-github"></i>
+          <img src="./assets/logos/GitHubIcon.png" alt="GitHub 3D" />
         </a>
-        <a href="mailto:navodaykopawar@gmail.com" class="text-gray-400 hover:text-white transition" aria-label="Email">
-          <i class="fas fa-envelope text-xl" aria-hidden="true"></i>
+
+        <!-- Email -->
+        <a href="mailto:navodaykopawar@gmail.com" aria-label="Email" class="footer-icon">
+          <i class="fas fa-envelope"></i>
+          <img src="./assets/logos/GmaiIcon.png" alt="Email 3D" />
         </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/918767378406" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+          class="footer-icon">
+          <i class="fab fa-whatsapp"></i>
+          <img src="./assets/logos/WhatsAppIcon.png" alt="WhatsApp 3D" />
+        </a>
+
+        <!-- Telegram -->
+        <a href="https://t.me/Navoday16" target="_blank" rel="noopener noreferrer" aria-label="Telegram"
+          class="footer-icon">
+          <i class="fab fa-telegram-plane"></i>
+          <img src="./assets/logos/TelegramIcon.png" alt="Telegram 3D" />
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/__nk_10?igsh=Y2dkZzUxbzh0b3p6" target="_blank" rel="noopener noreferrer"
+          aria-label="Instagram" class="footer-icon">
+          <i class="fab fa-instagram"></i>
+          <img src="./assets/logos/InstagramIcon.png" alt="Instagram 3D" />
+        </a>
+
       </div>
+
+
+      <div class="footer-divider"></div>
+
+      <p class="text-gray-400 copyright">© <span id="footerYear"></span> Navoday Kopawar. All rights reserved.</p>
+
     </div>
   </footer>
+  <script src="https://unpkg.com/lottie-web@5.12.2/build/player/lottie.min.js"></script>
 
-  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    // Elements
-    const mobileMenuEl = document.getElementById('mobileMenu');
-    const mobileToggle = document.getElementById('mobileToggle');
-    const contactForm = document.getElementById('contactForm');
-    const contactSubmit = document.getElementById('contactSubmit');
-
-    // Desktop theme toggle icons
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-    // Mobile theme toggle icons
-    const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
-    const themeToggleMobileDarkIcon = document.getElementById('theme-toggle-mobile-dark-icon');
-    const themeToggleMobileLightIcon = document.getElementById('theme-toggle-mobile-light-icon');
-
-    // Smooth scrolling (same-page anchors)
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        if (location.pathname === this.pathname && location.hostname === this.hostname) {
-          e.preventDefault();
-          const target = document.querySelector(href);
-          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          // close mobile menu if open
-          if (mobileMenuEl && !mobileMenuEl.classList.contains('hidden')) {
-            mobileMenuEl.classList.add('hidden');
-            mobileMenuEl.setAttribute('aria-hidden', 'true');
-            mobileToggle.setAttribute('aria-expanded', 'false');
-          }
-        }
-      });
-    });
-
-    // IntersectionObserver for fade-in
-    const ioOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, ioOptions);
-    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
-
-    // Accessible mobile menu toggle
-    if (mobileToggle && mobileMenuEl) {
-      mobileToggle.addEventListener('click', () => {
-        const isHidden = mobileMenuEl.classList.toggle('hidden');
-        mobileMenuEl.setAttribute('aria-hidden', isHidden ? 'true' : 'false');
-        mobileToggle.setAttribute('aria-expanded', (!isHidden).toString());
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && !mobileMenuEl.classList.contains('hidden')) {
-          mobileMenuEl.classList.add('hidden');
-          mobileMenuEl.setAttribute('aria-hidden', 'true');
-          mobileToggle.setAttribute('aria-expanded', 'false');
-        }
-      });
-    }
-
-    // Skill bar animation when visible
-    document.querySelectorAll('.skill-bar').forEach(bar => {
-      const percent = parseInt(bar.dataset.percent || '0', 10);
-      bar.style.width = '0%';
-      const pb = new IntersectionObserver((entries, obs) => {
-        if (entries[0].isIntersecting) {
-          bar.style.transition = 'width 1.2s ease';
-          bar.style.width = percent + '%';
-          bar.setAttribute('aria-valuenow', percent);
-          obs.disconnect();
-        }
-      }, { threshold: 0.3 });
-      pb.observe(bar);
-    });
-
-    // Active navigation highlighting using getBoundingClientRect
-    function updateActiveNav() {
-      const headerOffset = 120;
-      const sections = Array.from(document.querySelectorAll('section[id]'));
-      let closest = null;
-      let closestDistance = Infinity;
-      sections.forEach(section => {
-        const rect = section.getBoundingClientRect();
-        const distance = Math.abs(rect.top - headerOffset);
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closest = section.getAttribute('id');
-        }
-      });
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('text-purple-600', 'dark:text-purple-600');
-        const href = link.getAttribute('href');
-        if (href === `#${closest}`) link.classList.add('text-purple-600', 'dark:text-purple-600');
-      });
-    }
-    window.addEventListener('scroll', updateActiveNav, { passive: true });
-    window.addEventListener('resize', updateActiveNav);
-    updateActiveNav();
-
-    // Contact form (demo): clear fields and show toast
-    if (contactForm) {
-      contactForm.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        contactSubmit.disabled = true;
-        const originalText = contactSubmit.textContent;
-        contactSubmit.textContent = 'Sending...';
-        const name = document.getElementById('name'), email = document.getElementById('email'), message = document.getElementById('message');
-        try {
-          // place backend request here if available
-          await new Promise(r => setTimeout(r, 700));
-          name.value = ''; email.value = ''; message.value = '';
-          const toast = document.createElement('div'); toast.className = 'toast'; toast.setAttribute('role','status'); toast.textContent = 'Thanks — your message was sent!';
-          document.body.appendChild(toast);
-          setTimeout(() => toast.remove(), 3500);
-        } catch (err) {
-          alert('There was an error sending the message. Try again later.');
-        } finally {
-          contactSubmit.disabled = false;
-          contactSubmit.textContent = originalText;
-        }
-      });
-    }
-
-    // Theme handling (desktop + mobile toggles), default follows device unless user set preference
-    const setIconsForTheme = (isDark) => {
-      // Desktop
-      themeToggleDarkIcon && themeToggleDarkIcon.classList.toggle('hidden', isDark);
-      themeToggleLightIcon && themeToggleLightIcon.classList.toggle('hidden', !isDark);
-      // Mobile
-      themeToggleMobileDarkIcon && themeToggleMobileDarkIcon.classList.toggle('hidden', isDark);
-      themeToggleMobileLightIcon && themeToggleMobileLightIcon.classList.toggle('hidden', !isDark);
-    };
-
-    const applyInitialTheme = () => {
-      const stored = localStorage.getItem('color-theme');
-      const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      const useDark = (stored === 'dark') || (!stored && prefersDark);
-      if (useDark) document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');
-      setIconsForTheme(useDark);
-    };
-    applyInitialTheme();
-
-    function toggleTheme() {
-      const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
-      setIconsForTheme(isDark);
-    }
-
-    if (themeToggleBtn) themeToggleBtn.addEventListener('click', toggleTheme);
-    if (themeToggleMobileBtn) themeToggleMobileBtn.addEventListener('click', toggleTheme);
-
-    // Footer year
-    document.getElementById('footerYear').textContent = new Date().getFullYear();
+      (function () {
+        emailjs.init("hlWygs2Q_j3jH9OHd");
+      })();
   </script>
+
+  <script src="./assets/js/main.js" defer></script>
+  <script src="./assets/js/weather-window.js" defer></script>
+  <script src="./assets/js/nkcoinhub-viewer.js" defer></script>
+  <script>
+    (function () {
+      const isMobile =
+        window.matchMedia("(max-width: 768px)").matches ||
+        "ontouchstart" in window;
+
+      if (!isMobile) return;
+
+      function initWeatherSafely() {
+        const weatherEls = document.querySelectorAll(".weather-window");
+        if (!weatherEls.length) return;
+
+        weatherEls.forEach((el) => {
+          // Force reflow (critical for mobile)
+          el.style.display = "none";
+          el.offsetHeight; // reflow trigger
+          el.style.display = "";
+
+          // Mark as active
+          el.classList.add("weather-active");
+        });
+      }
+
+      // Wait for full layout + paint
+      window.addEventListener("load", () => {
+        requestAnimationFrame(() => {
+          setTimeout(initWeatherSafely, 300);
+        });
+      });
+    })();
+  </script>
+
 </body>
+
 </html>
