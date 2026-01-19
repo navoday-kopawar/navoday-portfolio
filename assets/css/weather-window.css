@@ -1,0 +1,176 @@
+/* =====================================================
+   WEATHER WINDOW — BASE
+===================================================== */
+
+.weather-window {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 0;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(#7dd3fc, #bae6fd);
+  overflow: hidden;
+}
+
+/* Glass reflection overlay */
+.weather-window::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255,255,255,.25),
+    rgba(255,255,255,.05),
+    rgba(255,255,255,.15)
+  );
+  pointer-events: none;
+}
+
+/* =====================================================
+   LAYERS
+===================================================== */
+
+.layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.back { z-index: 1; }
+.mid  { z-index: 2; }
+.front{ z-index: 3; }
+
+/* =====================================================
+   SUN
+===================================================== */
+
+.sun {
+  width: 70px;
+  height: 70px;
+  background: radial-gradient(circle, #fde047, #f59e0b);
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  box-shadow: 0 0 35px rgba(253,224,71,.8);
+  animation:
+    sunPulse 4s ease-in-out infinite,
+    sunFloat 6s ease-in-out infinite;
+}
+
+@keyframes sunPulse {
+  0%,100% {
+    box-shadow: 0 0 35px rgba(253,224,71,.7);
+  }
+  50% {
+    box-shadow: 0 0 55px rgba(253,224,71,1);
+  }
+}
+
+@keyframes sunFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(1.05);
+  }
+}
+/* =====================================================
+   CLOUDS
+===================================================== */
+
+.cloud {
+  position: absolute;
+  width: 160px;
+  height: 48px;
+  background: white;
+  border-radius: 50px;
+  opacity: .8;
+  left: -40%;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 60px;
+  height: 60px;
+  top: -30px;
+  left: 25px;
+}
+
+.cloud::after {
+  width: 80px;
+  height: 80px;
+  top: -40px;
+  right: 20px;
+}
+
+.cloud.back {
+  top: 45%;
+  opacity: .35;
+  transform: scale(.75);
+  animation: cloudMove 45s linear infinite;
+}
+
+.cloud.mid {
+  top: 62%;
+  opacity: .7;
+  transform: scale(.9);
+  animation: cloudMove 28s linear infinite;
+}
+
+@keyframes cloudMove {
+  from { left: -60%; }
+  to   { left: 140%; }
+}
+
+/* =====================================================
+   RAIN
+===================================================== */
+
+.rain {
+  width: 2px;
+  height: 18px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,.8),
+    transparent
+  );
+  position: absolute;
+  animation: rainFall linear infinite;
+}
+
+@keyframes rainFall {
+  from { transform: translateY(-20px); }
+  to   { transform: translateY(220px) translateX(20px); }
+}
+
+/* =====================================================
+   SNOW
+===================================================== */
+
+.snow {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  animation: snowFall linear infinite;
+}
+
+@keyframes snowFall {
+  from { transform: translateY(-10px); }
+  to   { transform: translateY(200px); }
+}
+
+/* =====================================================
+   END OF FILE
+===================================================== */

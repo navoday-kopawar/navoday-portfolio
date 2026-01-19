@@ -1,0 +1,116 @@
+/* ===============================
+   PORTFOLIO 3D CARD (ISOLATED)
+================================ */
+
+.portfolio-3d-card {
+  width: 100%;
+  max-width: 520px;
+  padding: 14px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #0e0e0e, #161616);
+  box-shadow:
+    0 30px 60px rgba(0,0,0,.6),
+    inset 0 1px 1px rgba(255,255,255,.08);
+  margin: 0 auto;
+}
+
+.portfolio-3d-card .top {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(180deg, #1c1c1c, #101010);
+  border-radius: 20px;
+  padding: 12px;
+  gap: 12px;
+}
+
+.portfolio-3d-card .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #f3e3cf;
+}
+
+.portfolio-3d-card .avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-3d-card .info {
+  flex: 1;
+}
+
+.portfolio-3d-card .name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.portfolio-3d-card .name img {
+  width: 18px;
+  height: 18px;
+}
+
+.portfolio-3d-card .role {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-top: 3px;
+}
+
+.portfolio-3d-card .reactions {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.portfolio-3d-card .reactions img {
+  width: 18px;
+}
+
+.portfolio-3d-card .heart {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portfolio-3d-card .heart img {
+  width: 18px;
+}
+
+.portfolio-3d-card .socials {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  margin-top: 16px;
+}
+/* ===============================
+   LIGHT MODE OVERRIDES ONLY
+================================ */
+
+html:not(.dark) .portfolio-3d-card {
+  background: linear-gradient(180deg, #ffffff, #f3f4f6);
+  box-shadow:
+    0 20px 40px rgba(0,0,0,.12),
+    inset 0 1px 1px rgba(255,255,255,.6);
+}
+
+html:not(.dark) .portfolio-3d-card .top {
+  background: linear-gradient(180deg, #ffffff, #f1f5f9);
+}
+
+html:not(.dark) .portfolio-3d-card .name {
+  color: #111827;
+}
+
+html:not(.dark) .portfolio-3d-card .role {
+  color: #4b5563;
+}

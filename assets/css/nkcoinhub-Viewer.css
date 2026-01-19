@@ -1,0 +1,102 @@
+/* =====================================================
+   NKCOINHUB — COLOR VARIABLES
+===================================================== */
+
+:root {
+  --p-dark: #205072;
+  --p-mid: #329D9C;
+  --accent: #56C596;
+  --text-light: #e6fbf6;
+}
+
+/* =====================================================
+   HEADER BACKGROUND
+===================================================== */
+
+.nkcoinhub-bg {
+  height: 100%;
+  padding: 16px 20px;
+  background: linear-gradient(
+    135deg,
+    var(--p-dark),
+    var(--p-mid),
+    var(--accent)
+  );
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+}
+
+/* =====================================================
+   ROW LAYOUT
+===================================================== */
+
+.nkcoinhub-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* =====================================================
+   LEFT — 3D MODEL AREA
+===================================================== */
+
+.nkcoinhub-model-area {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+}
+
+.nkcoinhub-tilt {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s ease;
+}
+
+.nkcoinhub-model {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+/* =====================================================
+   RIGHT — TEXT
+===================================================== */
+
+.nkcoinhub-text-wrap {
+  display: flex;
+  align-items: center;
+}
+
+.nkcoinhub-text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-light);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* =====================================================
+   MODEL-VIEWER TWEAKS
+===================================================== */
+
+/* Hide default loading progress bar */
+model-viewer::part(default-progress-bar) {
+  display: none;
+}
+
+/* Improve rendering quality */
+model-viewer {
+  --poster-color: transparent;
+}
+
+/* =====================================================
+   END OF FILE
+===================================================== */
